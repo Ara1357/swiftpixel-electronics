@@ -1,0 +1,1 @@
+ALTER TABLE `reviews` ADD CONSTRAINT `reviews_product_user_idx` UNIQUE(`productId`,`userId`);
