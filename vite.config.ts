@@ -7,7 +7,9 @@ export default defineConfig({
   root: "client",
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "client/src"),
+      "@": path.resolve("./client/src"),
+      "@shared": path.resolve("./shared"),
+      "@assets": path.resolve("./attached_assets"),
     },
   },
   build: {
