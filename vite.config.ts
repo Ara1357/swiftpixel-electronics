@@ -170,7 +170,7 @@ function vitePluginPublicPlatformConfig(): Plugin {
 
 
 export default defineConfig({
-    plugins: [isManusPublicPlatformConfig(), react(), tailwindIndex(), jsonPlugin(), vitePluginManusModuleHotfix()],
+    plugins:  [react(), tailwindIndex(), jsonPlugin(), vitePluginManusModuleHotfix()],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
