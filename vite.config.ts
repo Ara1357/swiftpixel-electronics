@@ -168,10 +168,9 @@ function vitePluginPublicPlatformConfig(): Plugin {
   };
 }
 
-const plugins = [vitePluginPublicPlatformConfig(), react(), tailwindcss(), jsxLocPlugin(), vitePluginManusDebugCollector()];
 
 export default defineConfig({
-  plugins,
+  const plugins = [isManusPublicPlatformConfig(), react(), tailwindIndex(), jsonPlugin(), vitePluginManusModuleHotfix()]
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
