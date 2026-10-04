@@ -72,4 +72,59 @@ export default function Home() {
               <div className="col-span-4 md:col-span-2 text-sm">{p.stock}</div>
               <div className="col-span-4 md:col-span-3 flex gap-2">
                 <button onClick={()=>{ setEditing(p); setForm({name:"",price:"",stock:"",img:""}) }} className="bg-blue-50 text-blue-600 px-3 py-1.5 rounded text-xs font-bold hover:bg-blue-600 hover:text-white">EDIT</button>
-                <button onClick={()=>del(p.id)} className="bg-red-50 text-red-600 px-3 py-1.5 rounded text-xs font-bold hover:bg-red-
+                <button onClick={()=>del(p.id)} className="bg-red-50 text-red-600 px-3 py-1.5 rounded text-xs font-bold hover:bg-red-600 hover:text-white">DELETE</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ADD MODAL */}
+      {showAdd && (
+        <div className="fixed inset-0 bg-black/50 z-40 flex items-end md:items-center justify-center p-0 md:p-4">
+          <div className="bg-white w-full md:max-w-[500px] rounded-t-2xl md:rounded-xl p-6 max-h-[90vh] overflow-auto">
+            <div className="flex justify-between mb-4"><h3 className="font-bold">Add New Product</h3><button onClick={()=>setShowAdd(false)} className="bg-gray-100 w-8 h-8 rounded-full">✕</button></div>
+
+            <label className="block mb-3">
+              <span className="text-xs font-bold text-gray-600">Product Image (from phone)</span>
+              <input type="file" accept="image/*" onChange={e=>handleImage(e,"form")} className="w-full mt-1 border border-dashed border-gray-300 rounded-lg p-3 text-sm"/>
+              {form.img && <img src={form.img} className="w-20 h-20 mt-2 rounded object-cover"/>}
+            </label>
+
+            <input value={form.name} onChange={e=>setForm({...form, name:e.target.value})} placeholder="Product Name" className="w-full border rounded-lg px-4 py-3 mb-3 text-sm outline-none focus:border-orange-400"/>
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              <input type="number" value={form.price} onChange={e=>setForm({...form, price:e.target.value})} placeholder="Price ₦" className="border rounded-lg px-4 py-3 text-sm outline-none"/>
+              <input type="number" value={form.stock} onChange={e=>setForm({...form, stock:e.target.value})} placeholder="Qty" className="border rounded-lg px-4 py-3 text-sm outline-none"/>
+            </div>
+            <button onClick={add} style={{background:ORANGE}} className="w-full text-white py-3.5 rounded-lg font-bold">ADD PRODUCT</button>
+          </div>
+        </div>
+      )}
+
+      {/* EDIT MODAL */}
+      {editing && (
+        <div className="fixed inset-0 bg-black/50 z-40 flex items-end md:items-center justify-center p-0 md:p-4">
+          <div className="bg-white w-full md:max-w-[500px] rounded-t-2xl md:rounded-xl p-6">
+            <div className="flex justify-between mb-4"><h3 className="font-bold">Edit Product</h3><button onClick={()=>setEditing(null)} className="bg-gray-100 w-8 h-8 rounded-full">✕</button></div>
+
+            <label className="block mb-3">
+              <span className="text-xs font-bold">Change Image</span>
+              <input type="file" accept="image/*" onChange={e=>handleImage(e,"edit")} className="w-full mt-1 border border-dashed rounded-lg p-3 text-sm"/>
+              <img src={editing.img} className="w-20 h-20 mt-2 rounded object-cover"/>
+            </label>
+
+            <input value={editing.name} onChange={e=>setEditing({...editing, name:e.target.value})} className="w-full border rounded-lg px-4 py-3 mb-3 text-sm"/>
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              <input type="number" value={editing.price} onChange={e=>setEditing({...editing, price:Number(e.target.value)})} className="border rounded-lg px-4 py-3 text-sm"/>
+              <input type="number" value={editing.stock} onChange={e=>setEditing({...editing, stock:Number(e.target.value)})} className="border rounded-lg px-4 py-3 text-sm"/>
+            </div>
+            <div className="flex gap-3">
+              <button onClick={()=>setEditing(null)} className="flex-1 bg-gray-100 py-3 rounded-lg font-bold text-sm">Cancel</button>
+              <button onClick={saveEdit} style={{background:ORANGE}} className="flex-1 text-white py-3 rounded-lg font-bold text-sm">SAVE CHANGES</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+      }
