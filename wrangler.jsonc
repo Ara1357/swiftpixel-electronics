@@ -2,7 +2,7 @@
   "name": "swiftpixel-electronics1",
   "compatibility_date": "2024-10-01",
   "assets": {
-    "directory": "./dist",
+    "directory": "./dist/public",
     "not_found_handling": "single-page-application"
   }
 }
